@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 # signtrip_react
 # signtrip_react
 # Signtrip_react
+# Signtrip_react
