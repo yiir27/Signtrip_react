@@ -36,6 +36,7 @@ const Logout = () => {
   // コンポーネントのレンダリング
   return (
     <div>
+      <p>ログイン</p>
       <button type="button" onClick={handleLogout}>ログアウト</button>
     </div>
   );
