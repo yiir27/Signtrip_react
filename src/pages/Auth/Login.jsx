@@ -1,9 +1,9 @@
-import {} from "react";
-import "../App.css";
+import { useState } from "react";
+// import "../App.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -14,13 +14,13 @@ const Login = () => {
   //ページ遷移や遷移先に値を渡すことが可能になるAPI
   const navigate = useNavigate();
   //環境変数からAPIのベースURLを取得
-  const baseURL = import.meta.env.VITE_API_BASE_URL;
+//   const baseURL = import.meta.env.VITE_API_BASE_URL;
   const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = (data) => {
     console.log(data);
     axios
-      .post(`${baseURL}/api/login`, data)
+      .post(`http://localhost/api/login`, data)
       .then((response) => {
         console.log(response.data);
         // サーバーからのレスポンスデータからトークンを抽出
@@ -38,13 +38,13 @@ const Login = () => {
         Cookies.set("token", token, { expires: 7 }); // 有効期限を設定
         Cookies.set("user_id", user_id, { expires: 7 }); // 有効期限を設定
         setErrorMessage("");
-        navigate("/posts");
+        navigate("/home");
       })
       .catch((error) => {
         if (error.response && error.response.data.message) {
             setErrorMessage(error.response.data.message);
         } else {
-            setErrorMessage("ログインに失敗");
+            setErrorMessage("ログインに失敗しました");
         }
         console.log(error);
       });
@@ -70,9 +70,15 @@ const Login = () => {
           })}
         />
         <p>{errors.password ? errors.password.message : null}</p>
-
-        <button type="submit">送信</button>
+        {errorMessage && (
+            <p>{errorMessage}</p>
+        )}
+        <button type="submit">Login</button>
       </form>
+      <div>
+        新規登録は
+        <Link to="/register">こちら</Link>
+      </div>
     </div>
   );
 }

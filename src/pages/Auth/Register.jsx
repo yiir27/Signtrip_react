@@ -1,7 +1,8 @@
 import {} from "react";
-import "../App.css"; //任意のcss
+// import "../App.css"; //任意のcss
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 
 //react-hook-formのメソッドを使用
@@ -11,8 +12,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm({ mode: "onChange" });
-
+  } = useForm({ mode: "onSubmit" });
 
   // "password" フィールドの値を監視しています。
   // watch メソッドは React Hook Form で提供されており、指定したフィールドの値を取得できます。
@@ -20,7 +20,7 @@ const Register = () => {
 
   // ここから先のコードで password 変数を使用してパスワードのバリデーションなどを行います。
   // この変数は "password" フィールドの値を取得するために利用します。
-
+  const navigate = useNavigate(); //useNavigateを初期化
 
 //入力データの送信
   const onSubmit = (data) => {
@@ -29,6 +29,9 @@ const Register = () => {
       .post("http://localhost/api/register", data)
       .then((response) => {
         console.log(response.data);
+        if(response.status === 204) {
+          navigate('/login');
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -38,7 +41,7 @@ const Register = () => {
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="name">name</label>
+        <label htmlFor="name">nickname</label>
         <input
           id="name"
           type="text"
@@ -89,6 +92,10 @@ const Register = () => {
 
         <button type="submit">送信</button>
       </form>
+      <div>
+        ログインは
+        <Link to="/login">こちら</Link>
+      </div>
     </div>
   );
 }
