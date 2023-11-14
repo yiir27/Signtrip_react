@@ -12,6 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --breakpoint-sm: 768px;
+  --breakpoint-lg: 1280px;
 }
 
 a {
@@ -28,7 +31,12 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
+  max-width: 500px;
   min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  justify-content: center;
 }
 
 h1 {

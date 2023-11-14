@@ -5,6 +5,7 @@ import Register from './pages/Auth/Register';
 import Home from './pages/Home/Home';
 import PrivateRoute from './components/other/PrivateRoute';
 import Logout from './pages/Auth/Logout';
+import NewPost from './pages/NewPost/NewPost';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route element={<PrivateRoute><Outlet/></PrivateRoute>}>
               <Route path='/home' element={<Home />}></Route>
               <Route path='/logout' element={<Logout />}></Route>
+              <Route path='/home/newPost' element={<NewPost />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
