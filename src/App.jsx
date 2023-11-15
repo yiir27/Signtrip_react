@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import PrivateRoute from './components/other/PrivateRoute';
 import Logout from './pages/Auth/Logout';
 import NewPost from './pages/NewPost/NewPost';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path='/home/newPost' element={<NewPost />}></Route>
           </Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )
