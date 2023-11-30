@@ -1,4 +1,52 @@
+ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    padding: 0;
+}
+
+
 /* PC */
 @media (min-width: 768px) {
-    
+    ul {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+li {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.home-list {
+    width: 100%;
+}
+
+.home-list__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover; //画像がコンテナに収まるようにトリミング
+    object-position: center center; //画像の中心をコンテナの中心に合わせる
+}
+
+.loading-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
