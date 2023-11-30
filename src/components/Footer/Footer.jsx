@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from "./Footer.module.scss";
 import {TbHome , TbSearch, TbCirclePlus, TbStars, TbMoodNerd } from "react-icons/tb";
 
@@ -20,49 +20,43 @@ const Footer = () => {
     }
 
   return (
-    <div className={styles.footerStyle}>
-        <div className={styles["icon-container"]}>
+    <div className={styles["footerStyle"]}>
+        <Link to='/home' className={styles["icon-container"]}>
             <TbHome
                 size="1.5rem"
                 onClick = {() => handleIconClick("/home")}
-                className={styles["icon-container__icon"]}
             />
             <p className={styles["icon-container__label"]}>ホーム</p>
-        </div>
-        <div className={styles["icon-container"]}>
+        </Link>
+        <Link to='' className={styles["icon-container"]}>
             <TbSearch
                 size="1.5rem"
-                // onClick = {() => handleIconClick("")}
                 className={styles["icon-container__icon"]}
             />
             <p className={styles["icon-container__label"]}>検索</p>
-        </div>
-        <div className={styles["icon-container"]}>
+        </Link>
+        <Link to='/home/newPost' className={styles["icon-container"]}>
             <TbCirclePlus
                 size="1.5rem"
-                onClick = {() => handleIconClick("/home/newPost")}
                 className={styles["icon-container__icon"]}
             />
             <p className={styles["icon-container__label"]}>投稿</p>
-        </div>
-        <div className={styles["icon-container"]}>
+        </Link>
+        <Link to='' className={styles["icon-container"]}>
             <TbStars
                 size="1.5rem"
-                // onClick = {() => handleIconClick("")}
                 className={styles["icon-container__icon"]}
             />
             <p className={styles["icon-container__label"]}>お気に入り</p>
-        </div>
-        <div className={styles["icon-container"]}>
+        </Link>
+        <Link to='' className={styles["icon-container"]}>
             <TbMoodNerd
                 size="1.5rem"
-                // onClick = {() => handleIconClick("")}
                 className={styles["icon-container__icon"]}
             />
             <p className={styles["icon-container__label"]}>マイページ</p>
-        </div>
+        </Link>
     </div>
   );
 }
-
 export default Footer

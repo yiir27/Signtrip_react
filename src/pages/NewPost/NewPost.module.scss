@@ -1,0 +1,122 @@
+.form {
+    max-height: calc(100vh - 190px); /* 190pxはフッターの高さ */
+    overflow-y: auto;
+}
+
+.form__field {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    @media (max-width: 768px) {
+        margin: 8px;
+        padding: 8px;
+    }
+
+    @media (min-width: 769px) {
+        margin: 12px;
+        padding: 12px;
+    }
+}
+
+.form__label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #40403f;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+
+    @media (min-width: 769px) {
+        font-size: 18px;
+    }
+}
+
+.form__image {
+    max-width: auto;
+    height: auto;
+    margin-top: 10px;
+}
+
+.form__input {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: auto;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+
+    @media (min-width: 769px) {
+        font-size: 18px;
+    }
+}
+
+.form__select {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: auto;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+
+    @media (min-width: 769px) {
+        font-size: 18px;
+    }
+}
+
+.form__buttonfield {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        margin: 8px;
+        padding: 8px;
+    }
+
+    @media (min-width: 769px) {
+        margin: 12px;
+        padding: 12px;
+    }
+}
+
+
+.form__submit-button {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    background-color: #d4dfbb;
+    color: #40403f;
+    border-radius: 4px;
+    margin-right: 10px; //右側に間隔を追加
+    width: 150px; //ボタンの幅を指定
+
+    @media (max-width: 768px) {
+        padding: 6px 10px;
+        font-size: 14px;
+        width: 130px;
+    }
+
+    @media (min-width: 769px) {
+        padding: 10px 14px;
+        font-size: 18px;
+        width: 170px;
+    }
+}
+
+.form__buttonfield > .form__submit-button:last-child {
+    margin-right: 0;
+}
