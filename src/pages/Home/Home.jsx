@@ -42,21 +42,22 @@ const Home = () => {
         {trips.length === 0 ? (
           <p>投稿はありません</p>
         ) : (
-          <div>
+          <ul>
             {trips
                   .map((trip, index) => (
-                    <li key={index}>
+                    <li key={index} className={styles["home-list__item"]}>
+                      {trip.image_url && (
+                        <img src={`http://localhost/storage/${trip.image_url}`} 
+                            alt="アイテム画像"
+                            className={styles["home-list__image"]}
+                            loading='lazy' />
+                      )}
                       <Link>
-                        {trip.image_url && (
-                          <img src={`http://localhost/storage/${trip.image_url}`} 
-                               alt="アイテム画像"
-                               className={styles["home-list__image"]}
-                               loading='lazy' />
-                        )}
+                        <p className={styles["home-list__title"]}>{trip.tripTitle}</p>
                       </Link>
                     </li>
                   ))}
-          </div>
+          </ul>
         )}
       </div> 
     </>
