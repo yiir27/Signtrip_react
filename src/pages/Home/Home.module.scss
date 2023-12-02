@@ -2,7 +2,7 @@ ul {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    gap: 5px;
     padding: 0;
 }
 
@@ -34,6 +34,22 @@ img {
 
 .home-list {
     width: 100%;
+}
+
+.home-list__item {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    background: #f3eed5;
+    border-bottom: solid 6px #f0e3a0;
+    border-radius: 9px;
+}
+
+.home-list__title{
+    color: #e4af9b;
+    text-align: center;
+    border: dashed 2px white;
+    margin: 5px 0 0 0;
+    padding: 0;
 }
 
 .home-list__image {
