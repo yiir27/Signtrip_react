@@ -37,19 +37,24 @@ img {
 }
 
 .home-list__item {
-    padding: 0.5em 1em;
+    padding: 0.5em 0.7em;
     margin: 2em 0;
-    background: #f3eed5;
-    border-bottom: solid 6px #f0e3a0;
+    border: 1px solid #f2f0f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     border-radius: 9px;
 }
 
 .home-list__title{
-    color: #e4af9b;
+    color: #737271;
+    font-size: 0.8em;
     text-align: center;
-    border: dashed 2px white;
     margin: 5px 0 0 0;
     padding: 0;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    border: 1px solid #f0eaea;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .home-list__image {
@@ -58,6 +63,7 @@ img {
     aspect-ratio: 1;
     object-fit: cover; //画像がコンテナに収まるようにトリミング
     object-position: center center; //画像の中心をコンテナの中心に合わせる
+    border-radius: 9px;
 }
 
 .loading-text {
