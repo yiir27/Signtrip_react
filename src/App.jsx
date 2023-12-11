@@ -7,6 +7,7 @@ import PrivateRoute from './components/other/PrivateRoute';
 import Logout from './pages/Auth/Logout';
 import NewPost from './pages/NewPost/NewPost';
 import Footer from './components/footer/Footer';
+import Post from './pages/Post/Post';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path='/home' element={<Home />}></Route>
               <Route path='/logout' element={<Logout />}></Route>
               <Route path='/home/newPost' element={<NewPost />}></Route>
+              <Route path='/home/:trip_id' element={<Post />}></Route>
           </Route>
         </Routes>
         <Footer />
