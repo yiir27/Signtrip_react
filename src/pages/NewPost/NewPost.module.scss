@@ -94,7 +94,7 @@
 }
 
 
-.form__submit-button {
+.form__submit-draftButton {
     padding: 8px 12px;
     border: none;
     cursor: pointer;
@@ -116,6 +116,30 @@
         width: 170px;
     }
 }
+
+.form__submit-publishButton {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    background-color: #e4af9b;
+    color: #40403f;
+    border-radius: 4px;
+    margin-right: 10px; //右側に間隔を追加
+    width: 150px; //ボタンの幅を指定
+
+    @media (max-width: 768px) {
+        padding: 6px 10px;
+        font-size: 14px;
+        width: 130px;
+    }
+
+    @media (min-width: 769px) {
+        padding: 10px 14px;
+        font-size: 18px;
+        width: 170px;
+    }
+}
+
 
 .form__buttonfield > .form__submit-button:last-child {
     margin-right: 0;
