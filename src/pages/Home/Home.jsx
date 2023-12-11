@@ -53,7 +53,7 @@ const Home = () => {
                             className={styles["home-list__image"]}
                             loading='lazy' />
                       )}
-                      <Link to={`/home/${trips.id}`}>
+                      <Link to={`/home/${trip.id}`}>
                         <p className={styles["home-list__title"]}>{trip.tripTitle}</p>
                       </Link>
                     </li>
