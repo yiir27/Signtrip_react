@@ -76,11 +76,13 @@ const NewPost = () => {
         }
     }
 
+    const handleDraft = data => {
+        handleSubmit(formData => onSubmit(formData, 2))(data);
+    }
 
-    
-    // const onSubmit = async (data, status) => {
-    //     await NewPostData(data, image, token, status, navigate);
-    // };
+    const handlePublish = data => {
+        handleSubmit(formData => onSubmit(formData, 1))(data);
+    }
 
 
   return (
@@ -128,15 +130,15 @@ const NewPost = () => {
                 <p>{errors.tripTitle ? errors.tripTitle.message : null}</p>
             </div>
             <div className={styles["form__buttonfield"]}>
-                {/* <button type='button'
-                //  onClick={() => handleSubmit((data) => onSubmit(data, 'draft'))}
-                 className={styles["form__submit-button"]}>
-                    下書き保存
-                </button> */}
-                <button type='submit' 
-                //  onClick={() => handleSubmit((data) => onSubmit(data, 'publish'))}
-                 className={styles["form__submit-button"]}>
+                <button type='button' 
+                 onClick={handlePublish}
+                 className={styles["form__submit-publishButton"]}>
                     投稿する
+                </button>
+                <button type='button'
+                 onClick={handleDraft}
+                 className={styles["form__submit-draftButton"]}>
+                    下書き保存
                 </button>
             </div>
         </form>

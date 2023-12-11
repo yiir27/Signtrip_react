@@ -44,6 +44,7 @@ const Home = () => {
         ) : (
           <ul>
             {trips
+                  .filter(trip => trip.status === 1) //status１のみフィルタリング
                   .sort((a, b) => b.id - a.id)
                   .map((trip) => (
                     <li key={trip.id} className={styles["home-list__item"]}>
