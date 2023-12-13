@@ -10,13 +10,15 @@ const NewPost = () => {
         register,
         handleSubmit,
         formState: { errors }   
-    } = useForm({ mode: 'onSubmit'});
+    } = useForm({ mode: 'onSubmit',});
     const navigate = useNavigate();
     const token = Cookies.get('token');
 
     //カテゴリ一覧
     const [categories, setCategories] = useState([]);
-
+    //route一覧
+    // const [showRouteForm, setShowRouteForm] = useState(false);
+ 
     useEffect(() => {
         
         const fetchCategories = async () => {
@@ -37,8 +39,14 @@ const NewPost = () => {
     const [image, setImage] = useState(null);
     //アップロードの画像
     const onImage = (event) => {
-        const file = event.target.files[0];
-        setImage(file);
+        const mainFile = event.target.files[0];
+        setImage(mainFile);
+    }
+
+    const [routeImage, setRouteImage] = useState(null);
+    const onRouteImage = event => {
+        const routeFile = event.target.files[0];
+        setRouteImage(routeFile);
     }
 
     const onSubmit = async (data) => {
@@ -48,7 +56,12 @@ const NewPost = () => {
         }
         formData.append("category_id",data.category_id);
         formData.append("tripTitle", data.tripTitle);
-        // formData.append("status", statusPlace); //'公開'状態を示すstatusを追加   
+
+        formData.append('title', data.title);
+        formData.append('text', data.text);
+        if(routeImage) {
+            formData.append('routes_image_url', routeImage);
+        }    
 
         try {
             const response = await axios.post(
@@ -63,7 +76,6 @@ const NewPost = () => {
             );
             if (response.status === 200) {
                 //フォーム送信成功時の処理
-                console.log("Post created successfully");
                 navigate("/home");
             } else {
                 //エラーハンドリング
@@ -72,7 +84,7 @@ const NewPost = () => {
             console.log(formData);
             console.log(response.status);
         } catch (error) {
-            console.log(error);
+            console.log("Failed to create post", error);
         }
     }
 
@@ -129,6 +141,41 @@ const NewPost = () => {
                     {...register("tripTitle", {required: "タイトルは必須です"})}/>
                 <p>{errors.tripTitle ? errors.tripTitle.message : null}</p>
             </div>
+            <div className={styles["form__field"]}>
+                <label className={styles["form__label"]}>ルート</label>
+            </div>
+            <div className={styles["form__field"]}>
+                <label htmlFor="image" className={styles["form__label"]}>
+                    画像をアップロード
+                </label>
+                <input type="file" id='route_image' accept='image/*' onChange={onRouteImage} className={styles["form__input"]}/>
+                {/* 画像があるなら表示させる */}
+                {routeImage && (
+                    <img 
+                        src={URL.createObjectURL(routeImage)}
+                        alt="投稿画像"
+                        className={styles["form__image"]}
+                    />
+                )}
+            </div>
+            <div className={styles["form__field"]}>
+                <label htmlFor="title" className={styles["form__label"]}>タイトル</label>
+                <input
+                    id='title' type='text' name='title'
+                    className={styles["form__input"]}
+                    {...register('title')}
+                />
+            </div>
+            <div className={styles["form__field"]}>
+                <label htmlFor="text" className={styles["form__label"]}>詳細</label>
+                <textarea
+                    id='text' name='text'
+                    {...register('text')}
+                    className={styles["form__textarea"]}
+                />
+                {/* <button type='button' onClick={() => setShowRouteForm}></button> */}
+            </div>
+
             <div className={styles["form__buttonfield"]}>
                 <button type='button' 
                  onClick={handlePublish}

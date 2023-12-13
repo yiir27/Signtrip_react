@@ -75,6 +75,24 @@
     }
 }
 
+.form__textarea {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin: auto;
+
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+
+    @media (min-width: 769px) {
+        font-size: 18px;
+    }
+}
+
+
 .form__buttonfield {
     margin: 10px;
     padding: 10px;

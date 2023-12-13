@@ -39,7 +39,7 @@ const Home = () => {
   return (
     <>
       <div className={styles["home-list"]}>      
-        {trips.length === 0 ? (
+        {trips.filter(trip => trip.status === 1).length === 0 ? (
           <p>投稿はありません</p>
         ) : (
           <ul>
