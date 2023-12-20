@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 import styles from './NewPost.module.scss';
 
@@ -9,6 +9,7 @@ const NewPost = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors }   
     } = useForm({ mode: 'onSubmit',});
     const navigate = useNavigate();
@@ -16,8 +17,14 @@ const NewPost = () => {
 
     //カテゴリ一覧
     const [categories, setCategories] = useState([]);
-    //route一覧
-    // const [showRouteForm, setShowRouteForm] = useState(false);
+    // const { 
+    //     fields,
+    //     append: appendRoutes,
+    //     remove,
+    // } = useFieldArray({
+    //     control,
+    //     name: "routes",
+    // });
  
     useEffect(() => {
         
@@ -61,8 +68,12 @@ const NewPost = () => {
         formData.append('text', data.text);
         if(routeImage) {
             formData.append('routes_image_url', routeImage);
-        }    
+        }
 
+        formData.append("tripStatus", data.tripStatus);
+        formData.append("RouteStatus", data.RouteStatus);
+
+        
         try {
             const response = await axios.post(
                 `http://localhost/api/users/home/newPost`,
@@ -74,26 +85,35 @@ const NewPost = () => {
                     },
                 }
             );
-            if (response.status === 200) {
+            if (response.status === 201) {
                 //フォーム送信成功時の処理
                 navigate("/home");
             } else {
                 //エラーハンドリング
                 console.error("Failed to create post");
             }
-            console.log(formData);
+            // console.log(formData);
             console.log(response.status);
         } catch (error) {
             console.log("Failed to create post", error);
         }
     }
 
-    const handleDraft = data => {
-        handleSubmit(formData => onSubmit(formData, 2))(data);
+    const handleDraft = () => {
+        handleSubmit( data => {
+            data.tripStatus = 2;
+            data.RouteStatus = 2;
+            onSubmit(data);
+        })();
     }
 
-    const handlePublish = data => {
-        handleSubmit(formData => onSubmit(formData, 1))(data);
+    const handlePublish = () => {
+        handleSubmit( data => {
+            data.tripStatus = 1;
+            data.RouteStatus = 1;
+            onSubmit(data);
+            alert('OK');
+        })();
     }
 
 
@@ -177,13 +197,17 @@ const NewPost = () => {
             </div>
 
             <div className={styles["form__buttonfield"]}>
-                <button type='button' 
+                <button type='submit'
                  onClick={handlePublish}
+                 name='action'
+                 value='publish'
                  className={styles["form__submit-publishButton"]}>
                     投稿する
                 </button>
-                <button type='button'
+                <button type='submit'
                  onClick={handleDraft}
+                 name='action'
+                 value='draft'
                  className={styles["form__submit-draftButton"]}>
                     下書き保存
                 </button>
