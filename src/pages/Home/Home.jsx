@@ -39,12 +39,12 @@ const Home = () => {
   return (
     <>
       <div className={styles["home-list"]}>      
-        {trips.filter(trip => trip.status === 1).length === 0 ? (
+        {trips.filter(trip => trip.tripStatus === 1).length === 0 ? (
           <p>投稿はありません</p>
         ) : (
           <ul>
             {trips
-                  .filter(trip => trip.status === 1) //status１のみフィルタリング
+                  .filter(trip => trip.tripStatus === 1) //status１のみフィルタリング
                   .sort((a, b) => b.id - a.id)
                   .map((trip) => (
                     <li key={trip.id} className={styles["home-list__item"]}>
